@@ -1,0 +1,1 @@
+pyside6-uic win1.ui > win1.py
