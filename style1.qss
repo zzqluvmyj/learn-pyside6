@@ -1,7 +1,0 @@
-QLabel {
-    background-color: red;
-}
-
-QLabel#title {
-    font-size: 30px;
-}
