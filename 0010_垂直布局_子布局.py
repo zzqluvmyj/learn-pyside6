@@ -10,8 +10,8 @@ class Widget(QWidget):
         self.vlayout1 = QVBoxLayout()
         self.vlayout2 = QVBoxLayout()
         self.layout = QHBoxLayout(self)
-        self.layout.addLayout(self.vlayout1)
-        self.layout.addLayout(self.vlayout2)
+        self.layout.addLayout(self.vlayout1)  # 增加子布局
+        self.layout.addLayout(self.vlayout2)  # 增加子布局
 
         self.vlayout1.addWidget(QLabel("vlabel 1 1"))
         self.vlayout1.addWidget(QLabel("vlabel 1 2"))
