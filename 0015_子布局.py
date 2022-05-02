@@ -2,7 +2,7 @@ import sys
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout
 from PySide6.QtCore import Qt
 
-
+# 任意布局之间都可以相互嵌套
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
