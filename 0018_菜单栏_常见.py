@@ -33,6 +33,7 @@ class Window(QMainWindow):
         self.file_menu.addSeparator()  # 添加分隔线
 
         # 一次性添加动作到菜单中
+        # QApplication.instance().quit() 表示退出程序
         self.file_menu.addAction("退出", "Ctrl+Q", QApplication.instance().quit)
 
         # 禁用菜单
