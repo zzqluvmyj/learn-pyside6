@@ -23,16 +23,36 @@ class DialogDemo(QMainWindow):
 
         dialog = QDialog()  # 创建QDialog
 
-        # QDialog 有3个方法可以返回值，accept，reject，done(int)
+        # exec()和open()
+        # exec()将对话框显示为模态对话框，在用户关闭之前一直阻塞。该函数返回一个DialogCode结果
+        # open()将立即返回，不阻塞
+
+        # accept()，reject()和done(n):
+        # accept() 隐藏模式对话框并将结果代码设置为Accepted(1).
+        # reject() 当对话框被用户拒绝或使用QDialog::Rejected(0)参数调用reject() 或done()时，将发出此信号。
+        # 请注意，使用hide () 或setVisible (false)隐藏对话框时不会发出此信号。这包括在对话框可见时将其删除。
+        # done(n) 关闭对话框并将其结果代码设置为 n。finished(n) 信号将发出n；如果n是QDialog::Accepted(1)或QDialog::Rejected(0)，
+        # 则也将分别发出accepted() 或 rejected() 信号。
+        # 如果此对话框使用 exec () 来显示，则 done() 也会导致本地事件循环完成，并且exec() 返回 n。
+        # 与QWidget::close () 一样，如果设置了Qt::WA_DeleteOnClose标志，done() 将删除对话框。
+        # 如果对话框是应用程序的主要小部件，则应用程序终止。如果对话框是最后一个关闭的窗口，则发出QGuiApplication::lastWindowClosed () 信号。
+
+        # 更详细内容参见  https://doc.qt.io/qt-6/qdialog.html
+
+        # 可以设置默认按钮，以用enter触发，见setDefault(bool)，注意：并不是按下enter后就会调用accept()
+        # 如果用户在QDialog中按下 Esc 键，QDialog::r​​eject() 将被调用。这将导致窗口关闭：关闭事件不能被忽略。
+
+        # 经过下面的connect后：
         # 如果accept，则exec()返回1
         # 如果reject，则exec()返回0
         # 如果done(n)，则exec()返回n
 
         layout = QHBoxLayout(dialog)
-        button1 = QPushButton("确认", dialog)
-        button1.clicked.connect(dialog.accept)
         button2 = QPushButton("取消", dialog)
         button2.clicked.connect(dialog.reject)
+        button1 = QPushButton("确认", dialog)
+        button1.clicked.connect(dialog.accept)
+        button1.setDefault(True)  # 设置为默认按钮后，enter会触发此按钮
         button3 = QPushButton("？", dialog)
         button3.clicked.connect(lambda: dialog.done(-1))
         layout.addWidget(button1)
@@ -49,6 +69,8 @@ class DialogDemo(QMainWindow):
 
         dialog.setWindowModality(Qt.ApplicationModal)
         print(dialog.exec())
+        # dialog.open()
+        print(dialog.result())  # 这个也可以获取DialogCode结果
 
 
 if __name__ == "__main__":
