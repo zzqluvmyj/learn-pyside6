@@ -32,8 +32,6 @@ class Window(QMainWindow):
         self.layout.addWidget(self.button)
         self.layout.addWidget(self.label)
 
-        self.show()
-
 
 class SubWindow(QLineEdit):
     def __init__(self, parent=None):
@@ -45,4 +43,5 @@ class SubWindow(QLineEdit):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = Window()
+    w.show()
     app.exec()
