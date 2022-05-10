@@ -39,7 +39,7 @@ class DialogDemo(QMainWindow):
 
         # 更详细内容参见  https://doc.qt.io/qt-6/qdialog.html
 
-        # 可以设置默认按钮，以用enter触发，见setDefault(bool)，注意：并不是按下enter后就会调用accept()
+        # 可以设置默认按钮，默认按钮在获取焦点时可以自动选中，用enter触发，见setDefault(bool)，注意：并不是按下enter后就会调用accept()
         # 如果用户在QDialog中按下 Esc 键，QDialog::r​​eject() 将被调用。这将导致窗口关闭：关闭事件不能被忽略。
 
         # 经过下面的connect后：
@@ -52,7 +52,7 @@ class DialogDemo(QMainWindow):
         button2.clicked.connect(dialog.reject)
         button1 = QPushButton("确认", dialog)
         button1.clicked.connect(dialog.accept)
-        button1.setDefault(True)  # 设置为默认按钮后，enter会触发此按钮
+        button1.setDefault(True)  # 设置为默认按钮后，获取焦点时会自动选中
         button3 = QPushButton("？", dialog)
         button3.clicked.connect(lambda: dialog.done(-1))
         layout.addWidget(button1)
