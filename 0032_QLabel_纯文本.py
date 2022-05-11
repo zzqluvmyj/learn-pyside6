@@ -20,7 +20,7 @@ class Window(QLabel):
         self.setText("**你好呀我的宝贝我的宝贝**")
         print(self.text())  # 获取label的值
 
-        # 设置对齐，对齐的常量值见0007
+        # 设置对齐，对齐的常量值见垂直布局_基本
         # self.setAlignment(Qt.AlignRight)
 
         # 设置缩进，单位是像素

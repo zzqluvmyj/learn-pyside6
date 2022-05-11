@@ -7,7 +7,7 @@ class Widget(QLabel):
     # 1.与库保持一致性
     # 2.如果parent=None，则为顶部窗口，否则为其他部件的子部件
     # 3.确保了父窗口在被垃圾回收的同时会回收子窗口
-    # 类似内容参见0031
+    # 类似内容参见推荐show()位置
     def __init__(self, parent=None):
         super().__init__(parent=parent)
         self.setText("你好")

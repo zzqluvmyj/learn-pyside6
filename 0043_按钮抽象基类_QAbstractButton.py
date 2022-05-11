@@ -41,5 +41,155 @@ QAbstractButton 提供四个信号：
 通常建议重新实现sizeHint ()，有时也重新实现hitButton ()（以确定按钮按下是否在按钮内）。
 对于具有两个以上状态的按钮（如三态按钮），您还必须重新实现checkStateSet () 和nextCheckState ()。
 
-继承一个新的按钮类太过麻烦，下面使用QPushButton来演示之前没有涉及到的QAbstractButton提供的方法
+具体见 https://doc.qt.io/qt-6/qabstractbutton.html
 """
+
+
+"""
+QAbstractButton提供的公共方法有
+
+bool	autoExclusive() const
+void	setAutoExclusive(bool)
+如果启用了自动排他性，则属于同一父窗口小部件的可选中按钮的行为就像它们是同一排他按钮组（QButtonGroup）的一部分一样。
+独占按钮组中，任何时候只能勾选一个按钮；选中另一个按钮会自动取消选中之前选中的按钮。
+该属性对属于按钮组的按钮没有影响。
+autoExclusive 默认关闭，单选按钮除外。
+
+bool	autoRepeat() const
+void	setAutoRepeat(bool)
+如果启用了 autoRepeat，则按下按钮时会定期发出pressed(), released(), and clicked()  信号。自动重复默认关闭。初始延迟和重复间隔由autoRepeatDelay和autoRepeatInterval以毫秒为单位定义。
+注意：如果一个按钮被一个快捷键按下，那么自动重复是由系统而不是这个类来启用和计时的。pressed(), released(), and clicked()  信号将像正常情况一样发出。
+
+int	autoRepeatDelay() const
+void	setAutoRepeatDelay(int)
+见autoRepeat()
+
+int	autoRepeatInterval() const
+void	setAutoRepeatInterval(int)
+见autoRepeat()
+
+QButtonGroup *	group() const
+返回此按钮所属的QButtonGroup。
+如果按钮不是任何QButtonGroup的成员，则此函数返回nullptr。
+见QButtonGroup
+
+QIcon	icon() const
+void	setIcon(const QIcon &icon)
+设置或返回按钮图标
+
+QSize	iconSize() const
+此属性保存用于此按钮的图标大小。
+默认大小由 GUI 样式定义。这是图标的最大尺寸。较小的图标不会被放大。
+
+bool	isCheckable() const
+void	setCheckable(bool)
+此属性保存按钮是否可选中
+默认情况下，该按钮是不可选中的。
+
+bool	isChecked() const
+是否选中，只能查看可选中的按钮
+
+bool	isDown() const
+void	setDown(bool)
+如果此属性为true，则按下按钮。如果将此属性设置为 true，则不会发出 pressed() and clicked()的信号。默认值为假。
+
+QKeySequence	shortcut() const
+void	setShortcut(const QKeySequence &key)
+此属性保存与按钮关联的助记符
+
+QString	text() const
+void	setText(const QString &text)
+此属性保存按钮上显示的文本
+如果按钮没有文本，text() 函数将返回一个空字符串。
+如果文本包含 & 字符 ('&')，则会自动为其创建快捷方式。'&' 后面的字符将用作快捷键。
+如果文本没有定义快捷方式，任何以前的快捷方式都将被覆盖或清除。
+有关详细信息，请参阅QShortcut文档。要显示实际的 & 符号，请使用“&&”。
+"""
+
+
+"""
+QAbstractButton提供的槽有
+
+void	animateClick()
+执行动画点击：立即按下按钮，并在 100 毫秒后释放。
+在释放按钮之前再次调用此函数会重置释放计时器。
+与点击相关的所有信号都会适当地发出。
+如果按钮被禁用，此功能将不执行任何操作。
+
+void	click()
+执行单击。
+与点击相关的所有常用信号都会酌情发出。如果该按钮是可选中的，则该按钮的状态被切换。
+如果按钮被禁用，此功能将不执行任何操作。
+
+void	setChecked(bool)
+见isChecked()
+
+void	setIconSize(const QSize &size)
+见iconSize()
+
+void	toggle()
+切换可选中按钮的状态
+"""
+
+
+"""
+QAbstractButton提供的信号有
+
+void	clicked(bool checked = false)
+当按钮被激活（即，当鼠标光标在按钮内时按下然后释放），当快捷键被键入，或者当click () 或animateClick () 被调用时，这个信号被发出。
+值得注意的是，如果您调用setDown ()、setChecked () 或toggle ()，则不会发出此信号。
+如果按钮是可选中的，如果按钮被选中，checked为真，如果按钮未被选中，则为假。
+
+void	pressed()
+该信号在按钮被按下时发出。
+
+void	released()
+释放按钮时发出此信号。
+
+void	toggled(bool checked)
+每当可检查按钮更改其状态时，都会发出此信号。如果按钮被选中， checked为真，如果按钮未被选中，则为假。
+这可能是用户操作、click () 插槽激活或调用setChecked () 的结果。
+独占按钮组中的按钮状态在此信号发出之前更新。
+"""
+
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (
+    QPushButton,
+    QCheckBox,
+    QRadioButton,
+    QApplication,
+    QWidget,
+    QHBoxLayout,
+    QVBoxLayout,
+)
+import sys
+
+
+class Window(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent=parent)
+        self.layout = QVBoxLayout(self)
+        self.setLayout(self.layout)
+
+        # autoExclusive()
+        self.layout1 = QHBoxLayout()
+        self.layout1.addWidget(QCheckBox("1", self))
+        self.layout1.addWidget(QCheckBox("2", self))
+        self.layout1.addWidget(QCheckBox("3", self))
+        self.layout.addLayout(self.layout1)
+
+        # isCheckable()
+        self.layout2 = QHBoxLayout()
+        self.lb1 = QPushButton("是", self, checkable=True)
+        self.lb2 = QPushButton("否", self, checkable=True)
+        self.layout2.addWidget(self.lb1)
+        self.layout2.addWidget(self.lb2)
+        self.layout.addLayout(self.layout2)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    w = Window()
+    w.show()
+    app.exec()

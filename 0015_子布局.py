@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QApplication, QLabel, QWidget, QVBoxLayout, QHBoxL
 from PySide6.QtCore import Qt
 
 # 任意布局之间都可以相互嵌套
+# 注意：添加子布局时，子布局的parent不需要，否则会报错
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
