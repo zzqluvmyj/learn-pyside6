@@ -14,7 +14,6 @@ if __name__ == "__main__":
     # 总体来说不推荐，宁可多写几行代码页不要这么写
     w = QWidget(windowTitle="简化属性设置", size=QSize(300, 300), toolTip="这是提示")
 
-    w.setWindowTitle("hello world")  # 设置标题
     w.show()
 
     sys.exit(app.exec())

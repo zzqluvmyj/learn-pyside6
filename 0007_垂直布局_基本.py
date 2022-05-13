@@ -2,14 +2,25 @@ import sys
 from PySide6.QtWidgets import QApplication, QLabel, QWidget, QVBoxLayout
 from PySide6.QtCore import Qt
 
+"""
+QVBoxLayout (QWidget * parent )
+用 parent parent构造一个新的顶级垂直框。
+布局直接设置为parent的顶级布局。一个小部件只能有一个顶级布局。它由QWidget::layout () 返回
+
+QVBoxLayout ()
+构造一个新的垂直框。您必须将其添加到另一个布局。
+
+!!!!!!!!!!!!!!!!!!!!
+注意：layout()是个继承而来的方法，不可使用self.layout存储布局，直接用self.setLayout()来设置
+"""
+
 
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
-        # self.layout = QVBoxLayout(self)
+        # QVBoxLayout(self)  # 直接设置self的layout
         # 或者
-        self.layout = QVBoxLayout()
-        self.setLayout(self.layout)
+        self.setLayout(QVBoxLayout())  # 先创建再设置
 
         # addWidget: (arg__1: QWidget, stretch: int = ..., alignment: Alignment = ...) -> None
         # 其中stretch是拉伸比例，该值越大，拉伸时变化越快
@@ -43,9 +54,9 @@ class Widget(QWidget):
         # Qt.AlignHorizo​​ntal_Mask
         # Qt.AlignVertical_Mask
 
-        self.layout.addWidget(QLabel("label 1"), 1, Qt.AlignLeft)
-        self.layout.addWidget(QLabel("label 2"), 2, Qt.AlignLeft)
-        self.layout.addWidget(QLabel("label 3"), 2, Qt.AlignRight)
+        self.layout().addWidget(QLabel("label 1"), 1, Qt.AlignLeft)
+        self.layout().addWidget(QLabel("label 2"), 2, Qt.AlignLeft)
+        self.layout().addWidget(QLabel("label 3"), 2, Qt.AlignRight)
 
 
 if __name__ == "__main__":

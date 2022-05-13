@@ -6,16 +6,13 @@ from PySide6.QtCore import Qt
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
-        # self.layout = QVBoxLayout(self)
-        # 或者
-        self.layout = QVBoxLayout()
-        self.setLayout(self.layout)
+        self.setLayout(QVBoxLayout())
 
-        self.layout.addWidget(QLabel("label 1"))
-        self.layout.addSpacing(20)  # 增加空间，定死的空间
-        self.layout.addWidget(QLabel("label 2"))
+        self.layout().addWidget(QLabel("label 1"))
+        self.layout().addSpacing(20)  # 增加空间，定死的空间
+        self.layout().addWidget(QLabel("label 2"))
 
-        self.layout.addWidget(QLabel("label 3"))
+        self.layout().addWidget(QLabel("label 3"))
 
 
 if __name__ == "__main__":

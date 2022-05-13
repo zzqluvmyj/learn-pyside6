@@ -169,15 +169,14 @@ import sys
 class Window(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.layout = QVBoxLayout(self)
-        self.setLayout(self.layout)
+        self.setLayout(QVBoxLayout())
 
         # autoExclusive()
         self.layout1 = QHBoxLayout()
         self.layout1.addWidget(QCheckBox("1", self))
         self.layout1.addWidget(QCheckBox("2", self))
         self.layout1.addWidget(QCheckBox("3", self))
-        self.layout.addLayout(self.layout1)
+        self.layout().addLayout(self.layout1)
 
         # isCheckable()
         self.layout2 = QHBoxLayout()
@@ -185,7 +184,7 @@ class Window(QWidget):
         self.lb2 = QPushButton("否", self, checkable=True)
         self.layout2.addWidget(self.lb1)
         self.layout2.addWidget(self.lb2)
-        self.layout.addLayout(self.layout2)
+        self.layout().addLayout(self.layout2)
 
 
 if __name__ == "__main__":

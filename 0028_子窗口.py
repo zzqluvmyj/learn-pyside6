@@ -20,8 +20,7 @@ class Window(QMainWindow):
 
         self.main = QWidget(self)
         self.setCentralWidget(self.main)
-
-        self.layout = QVBoxLayout(self.main)
+        self.main_layout = QVBoxLayout(self.main)
         self.button = QPushButton("弹窗", self.main)
         self.label = QLabel(self.main)
 
@@ -29,8 +28,8 @@ class Window(QMainWindow):
             lambda: self.sub_window.show()
         )  # 前面已经创建了子窗口，现在只需要让子窗口显示出来
 
-        self.layout.addWidget(self.button)
-        self.layout.addWidget(self.label)
+        self.main_layout.addWidget(self.button)
+        self.main_layout.addWidget(self.label)
 
 
 class SubWindow(QLineEdit):

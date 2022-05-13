@@ -6,17 +6,14 @@ from PySide6.QtCore import Qt
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
-        # self.layout = QVBoxLayout(self)
-        # 或者
-        self.layout = QVBoxLayout()
-        self.setLayout(self.layout)
+        self.setLayout(QVBoxLayout())
 
         # 弹簧会把多余的空间顶起来
-        self.layout.addWidget(QLabel("label 1"))
-        self.layout.addStretch(2)  # 增加弹簧，设定系数为2
-        self.layout.addWidget(QLabel("label 2"))
-        self.layout.addWidget(QLabel("label 3"))
-        self.layout.addStretch(1)  # 增加弹簧，设定系数为1
+        self.layout().addWidget(QLabel("label 1"))
+        self.layout().addStretch(2)  # 增加弹簧，设定系数为2
+        self.layout().addWidget(QLabel("label 2"))
+        self.layout().addWidget(QLabel("label 3"))
+        self.layout().addStretch(1)  # 增加弹簧，设定系数为1
         # 两个弹簧的系数之比就是拉伸时的伸缩量之比
 
 

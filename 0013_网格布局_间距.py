@@ -6,12 +6,12 @@ from PySide6.QtCore import Qt
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
-        self.layout = QGridLayout(self)
-        self.layout.addWidget(QLabel("label 1"), 1, 1, 1, 2)
-        self.layout.addWidget(QLabel("label 2"), 2, 1, 2, 1)
-        self.layout.addWidget(QLabel("label 3"), 2, 2)
-        self.layout.addWidget(QLabel("label 4"), 3, 2)
-        self.layout.setSpacing(20)  # 设置间距为20像素
+        self.setLayout(QGridLayout())
+        self.layout().addWidget(QLabel("label 1"), 1, 1, 1, 2)
+        self.layout().addWidget(QLabel("label 2"), 2, 1, 2, 1)
+        self.layout().addWidget(QLabel("label 3"), 2, 2)
+        self.layout().addWidget(QLabel("label 4"), 3, 2)
+        self.layout().setSpacing(20)  # 设置间距为20像素
 
 
 if __name__ == "__main__":

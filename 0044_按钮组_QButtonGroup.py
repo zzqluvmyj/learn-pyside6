@@ -41,7 +41,7 @@ id为 -1 由 QButtonGroup 保留，表示“没有这样的按钮”。
 class Window(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.layout = QVBoxLayout(self)
+        self.setLayout(QVBoxLayout())
 
         # QRadioButton默认，作为对比
         self.layout1 = QHBoxLayout()
@@ -52,7 +52,7 @@ class Window(QWidget):
         self.layout1.addWidget(self.radio1)
         self.layout1.addWidget(self.radio2)
         self.layout1.addWidget(self.radio3)
-        self.layout.addLayout(self.layout1)
+        self.layout().addLayout(self.layout1)
 
         # QCheckBox默认，作为对比
         self.layout2 = QHBoxLayout()
@@ -63,7 +63,7 @@ class Window(QWidget):
         self.layout2.addWidget(self.check1)
         self.layout2.addWidget(self.check2)
         self.layout2.addWidget(self.check3)
-        self.layout.addLayout(self.layout2)
+        self.layout().addLayout(self.layout2)
 
         self.layout3 = QHBoxLayout()
         self.bg1 = QButtonGroup(self)
@@ -101,7 +101,7 @@ class Window(QWidget):
         # C和D成为一组按钮组（默认成为了独占按钮组，没有用手动设置）
         # A何B成为一组按钮组（因为设置了不独占，所以A和B为非独占按钮组）
         self.bg1.removeButton(self.radio1_3)
-        self.layout.addLayout(self.layout3)
+        self.layout().addLayout(self.layout3)
 
         self.layout4 = QHBoxLayout()
         self.bg2 = QButtonGroup(self)
@@ -136,7 +136,7 @@ class Window(QWidget):
         self.bg2.idToggled.connect(self.id_toggle)
         # 当具有给定id的按钮被切换时，会发出此信号。如果按钮被选中， checked为真，如果按钮未被选中，则为假。
 
-        self.layout.addLayout(self.layout4)
+        self.layout().addLayout(self.layout4)
 
     @Slot(QAbstractButton)
     def button_click(self, button):

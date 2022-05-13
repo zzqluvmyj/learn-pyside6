@@ -20,15 +20,15 @@ RadioButton是一个选项按钮，可以打开（选中）或关闭（未选中
 class Window(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.layout = QHBoxLayout(self)
+        self.setLayout(QHBoxLayout())
 
         self.button1 = QRadioButton("苹果", self)
         self.button2 = QRadioButton("石榴", self)
         self.button3 = QRadioButton("香蕉", self)
 
-        self.layout.addWidget(self.button1)
-        self.layout.addWidget(self.button2)
-        self.layout.addWidget(self.button3)
+        self.layout().addWidget(self.button1)
+        self.layout().addWidget(self.button2)
+        self.layout().addWidget(self.button3)
 
         # 信号连接槽
         self.button1.toggled.connect(self.toggle_button(self.button1.text()))

@@ -47,10 +47,10 @@ QPushButton 小部件提供了一个命令按钮
 class Window(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
-        self.layout = QHBoxLayout(self)
+        self.setLayout(QHBoxLayout())
 
         self.button1 = QPushButton("好", self)
-        self.layout.addWidget(self.button1)
+        self.layout().addWidget(self.button1)
 
         # 绑定命令
         self.button1.clicked.connect(self.you_command)
@@ -80,7 +80,7 @@ class Window(QWidget):
         self.button2 = QPushButton("好不好", self)
         # showMenu可以弹出设置的菜单
         self.button2.clicked.connect(lambda: self.button1.showMenu())
-        self.layout.addWidget(self.button2)
+        self.layout().addWidget(self.button2)
 
     # 当设置弹出菜单后，不会触发clicked信号
     @Slot()
