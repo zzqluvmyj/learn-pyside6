@@ -14,3 +14,7 @@
 因此，不使用qt designer来设计界面，自己纯手工用代码撸界面。
 
 本教程主要参考https://doc.qt.io/qt-6/
+
+标签说明：
+ERROR 有错误
+TODO 待完成
