@@ -29,6 +29,9 @@ class MyLineEdit(QLineEdit):
     # 重新实现QLineEdit的上下文菜单
     def contextMenuEvent(self, event):
         file_menu = self.createStandardContextMenu()
+        # file_menu = self.createStandardContextMenu(QPoint(0,0))
+        # 加上QPoint参数后，可以在指定位置弹出上下文菜单
+
         # 调用createStandardContextMenu后可以扩展原有的上下文菜单
         # 如果不需要原有的上下文菜单，直接QMenu即可
         new_file_action = file_menu.addAction("新建")

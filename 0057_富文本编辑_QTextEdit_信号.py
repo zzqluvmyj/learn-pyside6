@@ -1,0 +1,7 @@
+# void	copyAvailable(bool yes)
+# void	currentCharFormatChanged(const QTextCharFormat &f)
+# void	cursorPositionChanged()
+# void	redoAvailable(bool available)
+# void	selectionChanged()
+# void	textChanged()
+# void	undoAvailable(bool available)
