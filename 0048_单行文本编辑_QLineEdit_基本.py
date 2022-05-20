@@ -89,6 +89,7 @@ class Window(QWidget):
         # 在只读模式下，用户仍然可以将文本复制到剪贴板，或者拖放文本（如果echoMode () 为Normal），但不能对其进行编辑。
         # QLineEdit在只读模式下不显示光标。
         # 默认情况下，此属性为false.
+        # ERROR：只读有bug，中文依然能够输入
         self.line_edit_8 = QLineEdit(self)
         self.line_edit_8.setText("hello world")
         self.line_edit_8.setReadOnly(True)
