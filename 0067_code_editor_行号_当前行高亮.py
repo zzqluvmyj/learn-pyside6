@@ -10,6 +10,7 @@ from PySide6.QtCore import Qt, QSize, QRect
 from PySide6.QtGui import QPainter, QTextCharFormat, QColor, QTextBlock
 
 # TODO 暂时看不懂没关系，以后再来看，然后加点注释
+# 参考自 https://code.qt.io/cgit/qt/qtbase.git/tree/examples/widgets/widgets/codeeditor
 
 
 class LineNumberArea(QWidget):
