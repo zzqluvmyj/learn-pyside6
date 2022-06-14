@@ -1,7 +1,15 @@
 # setCompleter
 
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QLineEdit, QCompleter
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QLineEdit,
+    QCompleter,
+    QWidget,
+    QLabel,
+    QVBoxLayout,
+)
 from PySide6.QtCore import Qt
 
 """
@@ -15,9 +23,15 @@ TODO 更多内容见QCompleter
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.line_edit = QLineEdit(self)
-        self.setCentralWidget(self.line_edit)
-        self.c = QCompleter(["1111", "1122", "1233"], self)
+        self.w = QWidget(self)
+        self.line_edit = QLineEdit(self.w)
+        # 多套一个外部的widget是为了更好观察自动完成的视图情况
+
+        self.setCentralWidget(self.w)
+        self.c = QCompleter(
+            ["11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"],
+            self,
+        )
         self.line_edit.setCompleter(self.c)
 
 
