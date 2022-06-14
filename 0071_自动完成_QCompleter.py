@@ -6,6 +6,7 @@ from PySide6.QtWidgets import (
     QCompleter,
     QWidget,
     QFileSystemModel,
+    QListView,
 )
 from PySide6.QtCore import Qt, QStringListModel, Slot
 
@@ -79,7 +80,18 @@ class Window(QMainWindow):
         # 注意：当完成者的caseSensitivity与模型在排序时使用的区分大小写不同时，上述性能改进不会发生。
         self.c.setModelSorting(QCompleter.CaseInsensitivelySortedModel)
 
-        # TODO setPopup可以指定弹出窗口，在QListView之后再进行补充
+        # 将用于显示完成的弹出窗口设置为popup。QCompleter拥有视图的所有权。
+        # 当completionMode () 设置为QCompleter::PopupCompletion或QCompleter:: UnfilteredPopupCompletion时，
+        # 会自动创建QListView 。默认弹出窗口显示completionColumn ()。
+        # 确保在修改视图设置之前调用此函数
+        # 这是必需的，因为视图的属性可能需要在视图上设置模型（例如，在视图中隐藏列需要在视图上设置模型）。
+        self.listview = QListView()
+        self.c.setPopup(self.listview)
+        self.listview.setModel(QStringListModel(["abc", "efg", "hij"]))
+        # 注意：
+        # 自定义自动完成时会使用这个，当前的setPopup示例并没有实际作用
+        # 如果需要让他符合逻辑，需要监听line_edit的修改并且实时修改listview所对应的model
+        # 这样更灵活一点，而且可以进行性能优化
 
         # 设置大小写敏感性
         # Qt::CaseInsensitive	0
