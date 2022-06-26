@@ -15,9 +15,9 @@ class Window(QCheckBox):
         print(self.isTristate())
 
         # 设置三态复选框的状态
-        # Qt.Checked	2	组件没有被选中（默认）
+        # Qt.Checked	2	组件被选中
         # Qt.PartiallyChecked	1	组件被半选中
-        # Qt.Unchecked	0	组件被选中
+        # Qt.Unchecked	0	组件没有被选中（默认）
         self.setCheckState(Qt.PartiallyChecked)
         print(self.isChecked())  # 半选中也是选中
 
